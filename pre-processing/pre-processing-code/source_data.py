@@ -9,7 +9,8 @@ def source_dataset(s3_bucket, new_s3_key):
 
     df = pd.read_csv(source_data, index_col=None)
 
-    df.to_csv('/tmp/' + file_name, index=False)
+    df.replace({'&ndash;': '—', '&#39;': '\''}, regex=True).to_csv(
+        '/tmp/' + file_name, index=False)
 
     s3 = boto3.client('s3')
     s3.upload_file('/tmp/' + file_name, s3_bucket, new_s3_key + file_name)
