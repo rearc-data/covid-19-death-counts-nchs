@@ -1,10 +1,6 @@
-<a href="https://www.rearc.io/data/">
-    <img src="./rearc_logo_rgb.png" alt="Rearc Logo" title="Rearc Logo" height="52" />
-</a>
-
 # Provisional Death Counts for Coronavirus Disease (COVID-19) | National Center for Health Statistics (NCHS)
 
-You can subscribe to the AWS Data Exchange product utilizing the automation featured in this repository by visiting [https://aws.amazon.com/marketplace/pp/prodview-rw5xp4o4hqu7g](https://aws.amazon.com/marketplace/pp/prodview-rw5xp4o4hqu7g). 
+The source code outlining how this product gathers, transforms, revises and publishes its datasets is avaiable at [https://github.com/rearc-data/covid-19-death-counts-nchs](https://github.com/rearc-data/covid-19-death-counts-nchs).
 
 ## Product Description
 This release contains the provisional counts for coronavirus disease (COVID-19) deaths in the United States, by week, age, state, sex and place, based on the data submitted to the National Center for Health Statistics (NCHS) and recorded by the National Vital Statistics System. It can take several weeks for death records to be submitted, processed and tabulated by NCHS, so the included data may be incomplete, especially for more recent time periods. Death counts for earlier weeks will continue to be revised as more information becomes available.
