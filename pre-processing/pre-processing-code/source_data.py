@@ -1,16 +1,25 @@
 import os
-import pandas as pd
 import boto3
+import urllib.request
 
-def source_dataset(s3_bucket, new_s3_key):
+def source_dataset(new_filename, s3_bucket, new_s3_key):
 
-    source_data = 'https://data.cdc.gov/resource/hc4f-j6nb.csv'
-    file_name = 'provisional-death-counts-covid-19-nchs.csv'
+	source_dataset_url = 'https://data.cdc.gov/resource/hc4f-j6nb'
+	
+	urllib.request.urlretrieve(
+		source_dataset_url + '.csv', '/tmp/' + new_filename + '.csv')
+	urllib.request.urlretrieve(
+		source_dataset_url + '.json', '/tmp/' + new_filename + '.json')
 
-    df = pd.read_csv(source_data, index_col=None)
+	s3 = boto3.client('s3')
+	folder = "/tmp"
 
-    df.replace({'&ndash;': '—', '&#39;': '\''}, regex=True).to_csv(
-        '/tmp/' + file_name, index=False)
+	asset_list = []
 
-    s3 = boto3.client('s3')
-    s3.upload_file('/tmp/' + file_name, s3_bucket, new_s3_key + file_name)
+	for filename in os.listdir(folder):
+		print(filename)
+		s3.upload_file('/tmp/' + filename, s3_bucket, new_s3_key + filename)
+
+		asset_list.append({'Bucket': s3_bucket, 'Key': new_s3_key + filename})
+
+	return asset_list
