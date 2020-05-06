@@ -4,7 +4,7 @@ import urllib.request
 
 def source_dataset(new_filename, s3_bucket, new_s3_key):
 
-	source_dataset_url = 'https://data.cdc.gov/resource/hc4f-j6nb'
+	source_dataset_url = 'https://data.cdc.gov/api/views/hc4f-j6nb/rows'
 	
 	urllib.request.urlretrieve(
 		source_dataset_url + '.csv', '/tmp/' + new_filename + '.csv')
